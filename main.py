@@ -2,7 +2,7 @@ from fastapi import FastAPI
 import uvicorn
 from mylib.logic import search_wiki
 from mylib.logic import wiki as wikilogic
-
+from mylib.logic import phrase as wikiphras
 app = FastAPI()
 @app.get("/")
 async def root():
@@ -20,5 +20,10 @@ async def wiki(name:str):
     result = wikilogic(name)
     return {"results":result}
 
+@app.get("/phrases/{name}")
+async def phrase(name:str):
+    """Retrieve wikipedia page and return phrases"""
+    result = wikiphras(name)
+    return {"results":result}
 if __name__ == '__main__':
     uvicorn.run(app,port=8080, host='0.0.0.0')
