@@ -7,6 +7,7 @@ format:
 	black *.py mylib/
 lint:
 	#flake8 or #pylint
+	pylint --disable=R,C *.py mylib/*.py
 test:
 	python -m pytest -vv --cov=mylib test_logic.py
 build:
